@@ -1,0 +1,102 @@
+{
+    "meta": {
+        "format": "JSON",
+        "version": "1.1.0",
+        "projectId": "hotspot-dev-c04e9",
+        "resourcePath": [
+            "masterStock"
+        ],
+        "recursive": false,
+        "creationTime": 1760784116,
+        "app": "firefoo"
+    },
+    "data": {
+        "Beverages": {
+            "data": {
+                "categoryId": "cat_beverages",
+                "categoryName": "Beverages"
+            },
+            "path": "masterStock/Beverages",
+            "__collections__": {
+                "items": {
+                    "Cool Drinks Big": {
+                        "data": {
+                            "categoryId": "cat_beverages",
+                            "itemName": "Cool Drinks Big",
+                            "maxStock": 200,
+                            "minStock": 50,
+                            "unit": "Nos"
+                        },
+                        "path": "masterStock/Beverages/items/Cool Drinks Big",
+                        "__collections__": {}
+                    },
+                    "Cool Drinks Small": {
+                        "data": {
+                            "categoryId": "cat_beverages",
+                            "itemName": "Cool Drinks Small",
+                            "maxStock": 100,
+                            "minStock": 0,
+                            "unit": "Nos"
+                        },
+                        "path": "masterStock/Beverages/items/Cool Drinks Small",
+                        "__collections__": {}
+                    },
+                    "Water Bottle Big": {
+                        "data": {
+                            "categoryId": "cat_beverages",
+                            "itemName": "Water Bottle Big",
+                            "maxStock": 200,
+                            "minStock": 20,
+                            "unit": "Nos"
+                        },
+                        "path": "masterStock/Beverages/items/Water Bottle Big",
+                        "__collections__": {}
+                    },
+                    "Water Bottle Small": {
+                        "data": {
+                            "categoryId": "cat_beverages",
+                            "itemName": "Water Bottle Small",
+                            "maxStock": 200,
+                            "minStock": 0,
+                            "unit": "Nos"
+                        },
+                        "path": "masterStock/Beverages/items/Water Bottle Small",
+                        "__collections__": {}
+                    }
+                }
+            }
+        },
+        "Grocery": {
+            "data": {
+                "categoryId": "cat_grocery",
+                "categoryName": "Grocery"
+            },
+            "path": "masterStock/Grocery",
+            "__collections__": {}
+        },
+        "Meat": {
+            "data": {
+                "categoryId": "cat_meat",
+                "categoryName": "Meat"
+            },
+            "path": "masterStock/Meat",
+            "__collections__": {}
+        },
+        "Milk Products": {
+            "data": {
+                "categoryId": "cat_milk_products",
+                "categoryName": "Milk Products"
+            },
+            "path": "masterStock/Milk Products",
+            "__collections__": {}
+        },
+        "Vegetables": {
+            "data": {
+                "categoryId": "cat_vegetables",
+                "categoryName": "Vegetables"
+            },
+            "path": "masterStock/Vegetables",
+            "__collections__": {}
+        }
+    }
+}

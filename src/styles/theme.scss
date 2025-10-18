@@ -1,0 +1,147 @@
+/* 🔥 HOTSPOT THEME — Red & Black on Light Background */
+
+:root {
+  /* Brand Colors */
+  --primary-color: #E63946;   /* Hot red */
+  --primary-light: #FF6B6B;   /* Light red */
+  --primary-dark: #B71C1C;    /* Deep red */
+
+  --secondary-color: #000000; /* Black */
+  --secondary-light: #333333;
+  --secondary-dark: #000000;
+
+  /* Backgrounds */
+  --bg-primary: #FFFFFF;      /* App background */
+  --bg-secondary: #FAFAFA;    /* Card or section background */
+  --bg-tertiary: #F0F0F0;     /* Subtle dividers or inactive areas */
+
+  /* Text Colors */
+  --text-primary: #000000;
+  --text-secondary: #444444;
+  --text-light: #777777;
+
+  /* Status / Alerts */
+  --success-color: #2ECC71;
+  --warning-color: #F1C40F;
+  --danger-color: #E63946;   /* Same red tone for errors */
+  --info-color: #000000;
+
+  /* Borders / Shadows */
+  --border-color: #E0E0E0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Bootstrap / Theme Overrides */
+$theme-colors: (
+  "primary": var(--primary-color),
+  "secondary": var(--secondary-color),
+  "success": var(--success-color),
+  "warning": var(--warning-color),
+  "danger": var(--danger-color),
+  "info": var(--info-color)
+);
+
+/* Components */
+.card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px var(--shadow-color), 0 1px 3px rgba(0, 0, 0, 0.08);
+
+  .card-header {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+  }
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+  
+  &:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+  }
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: #fff;
+
+  &:hover {
+    background-color: var(--secondary-light);
+    border-color: var(--secondary-light);
+  }
+}
+
+/* Stock Summary Card */
+.stock-summary-card {
+  background-color: var(--bg-secondary);
+  border-left: 4px solid var(--primary-color);
+}
+
+/* Alerts */
+.stock-alert {
+  color: var(--danger-color);
+}
+
+/* Modals */
+.recent-entries-modal {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+}
+
+/* Form Controls */
+.form-control, .form-select {
+  border-color: var(--border-color);
+  
+  &:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(230, 57, 70, 0.25);
+  }
+}
+
+/* Back Button */
+.btn-back {
+  color: var(--text-secondary);
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  
+  &:hover {
+    color: var(--primary-color);
+    transform: translateX(-3px);
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+.text-muted {
+  color: var(--text-light) !important;
+}
+
+/* Utility Classes */
+.bg-light-red {
+  background-color: var(--primary-light);
+}
+
+.text-red {
+  color: var(--primary-color);
+}
+
+.text-black {
+  color: var(--secondary-color);
+}

@@ -1,4 +1,12 @@
-# React + TypeScript + Vite
+# Hotspot Stock Management System
+
+A React + TypeScript + Vite application for managing stock inventory with Firebase backend.
+
+## Features
+- Stock management and tracking
+- Purchase recording
+- Low stock alerts
+- Daily stock reports
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

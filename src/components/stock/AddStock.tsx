@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { collection, getDocs, addDoc, updateDoc, doc, getDoc, setDoc } from 'firebase/firestore';
 import { ArrowLeft } from 'lucide-react';
 import { db } from '../../utils/firebase';
+import { testFirebaseConnection } from '../../utils/testFirebase';
 import StockHeader from './StockHeader';
 
 interface Category {
@@ -42,6 +43,11 @@ const AddStock = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
+        // Test Firebase connection first
+        console.log('Testing Firebase connection...');
+        const testResult = await testFirebaseConnection();
+        console.log('Test result:', testResult);
+        
         const categoriesRef = collection(db, 'masterStock');
         const categoriesSnapshot = await getDocs(categoriesRef);
         const categoriesList: Category[] = [];
@@ -57,12 +63,24 @@ const AddStock = () => {
         setCategories(categoriesList.sort((a, b) => a.categoryName.localeCompare(b.categoryName)));
       } catch (error) {
         console.error('Error fetching categories:', error);
+        console.error('Error details:', {
+          message: error instanceof Error ? error.message : 'Unknown error',
+          code: (error as any)?.code,
+          stack: error instanceof Error ? error.stack : null
+        });
+        
         if (error instanceof Error) {
           if (error.message.includes('CORS')) {
             alert('CORS Error: Please check your Firebase configuration and make sure you have the correct permissions.');
+          } else if (error.message.includes('permission-denied')) {
+            alert('Permission denied: Please check your Firestore security rules.');
+          } else if (error.message.includes('not-found')) {
+            alert('Database not found: Please check your Firebase project configuration.');
           } else {
-            alert('Error loading categories. Please check your internet connection and try again.');
+            alert(`Error loading categories: ${error.message}`);
           }
+        } else {
+          alert('Unknown error loading categories. Check console for details.');
         }
       }
     };

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
-import { AlertTriangle, ArrowLeft } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { AlertTriangle } from 'lucide-react';
 import { db } from '../../utils/firebase';
+import StockHeader from './StockHeader';
 
 interface StockItem {
   id: string;
@@ -17,7 +17,6 @@ interface StockItem {
 }
 
 const LowStockList = () => {
-  const navigate = useNavigate();
   const [lowStockItems, setLowStockItems] = useState<StockItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -68,62 +67,58 @@ const LowStockList = () => {
   }, []);
 
   return (
-    <div className="container my-5">
-      <div className="row justify-content-center">
-        <div className="col-md-8">
-          <div className="card">
-            <div className="card-header d-flex justify-content-between align-items-center">
-              <h5 className="mb-0">Low Stock Items</h5>
-              <button 
-                className="btn-back"
-                onClick={() => navigate('/')}
-                title="Back to home"
-              >
-                <ArrowLeft size={20} />
-              </button>
-            </div>
-            <div className="card-body">
-              {loading ? (
-                <div className="text-center py-4">
-                  <div className="spinner-border text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
+    <>
+      <StockHeader title="Low Stock Items" />
+      <div className="container" style={{ marginTop: '80px' }}>
+        <div className="row justify-content-center">
+          <div className="col-md-8">
+            <div className="card">
+              <div className="card-body">
+                {loading ? (
+                  <div className="text-center py-4">
+                    <div className="spinner-border text-primary" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="list-group list-group-flush">
-                  {lowStockItems.map((item) => (
-                    <div key={item.id} className="list-group-item">
-                      <div className="d-flex justify-content-between align-items-center">
-                        <div>
-                          <h6 className="mb-0">{item.data.itemName}</h6>
-                          <small className="text-muted">{item.categoryName}</small>
-                        </div>
-                        <div className="text-end">
-                          <div className="mb-0">
-                            <strong>{item.currentStock}</strong> {item.data.unit}
-                            {item.currentStock <= item.data.minStock && (
-                              <AlertTriangle className="text-warning ms-1" size={16} />
-                            )}
+                ) : (
+                  <div className="list-group list-group-flush">
+                    {lowStockItems.map((item) => (
+                      <div key={item.id} className="list-group-item px-0">
+                        <div className="d-flex justify-content-between align-items-center">
+                          <div>
+                            <h6 className="mb-0">{item.data.itemName}</h6>
+                            <small className="text-muted">{item.categoryName}</small>
                           </div>
-                          <small className="text-muted">
-                            Min: {item.data.minStock} {item.data.unit}
-                          </small>
+                          <div className="text-end">
+                            <div className="mb-0">
+                              <strong className={item.currentStock === 0 ? 'text-danger' : item.currentStock <= item.data.minStock ? 'text-warning' : 'text-success'}>
+                                {item.currentStock}
+                              </strong> {item.data.unit}
+                              {item.currentStock <= item.data.minStock && (
+                                <AlertTriangle className="text-warning ms-1" size={16} />
+                              )}
+                            </div>
+                            <small className="text-muted">
+                              Min: {item.data.minStock} {item.data.unit}
+                            </small>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                  {lowStockItems.length === 0 && (
-                    <div className="text-center text-muted py-3">
-                      No items below minimum stock level
-                    </div>
-                  )}
-                </div>
-              )}
+                    ))}
+                    {lowStockItems.length === 0 && (
+                      <div className="text-center text-muted py-4">
+                        <AlertTriangle className="text-success mb-2" size={48} />
+                        <p className="mb-0">Great! No items below minimum stock level</p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
